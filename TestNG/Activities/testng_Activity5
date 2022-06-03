@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="SeleniumTests">
+    <test name="SuiteTests">
+        <groups>
+            <run>
+           <!--     To run Activity 5 part (ii)
+           <include name="HeaderTests" />  -->
+
+                <!--     To run Activity 5 part (iii)
+           <include name="ButtonTests" />  -->
+
+                <!--     To run Activity 5 part (iv)-->
+                <exclude name="HeaderTests" />
+                </run>
+            </groups>
+            <classes>
+                <class name="activities.Activity5" />
+            </classes>
+        </test>
+    </suite>
