@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="FSTProject1">
+    <test name="HRMTests">
+        <parameter name="username" value="orange"></parameter>
+        <parameter name="password" value="orangepassword123"></parameter>
+            <classes>
+                <class name="OrangeHRM_Project.HRMActivity1" />
+                <class name="OrangeHRM_Project.HRMActivity2" />
+                <class name="OrangeHRM_Project.HRMActivity3" />
+                <class name="OrangeHRM_Project.HRMActivity4" />
+                <class name="OrangeHRM_Project.HRMActivity5" />
+                <class name="OrangeHRM_Project.HRMActivity6" />
+                <class name="OrangeHRM_Project.HRMActivity7" />
+                <class name="OrangeHRM_Project.HRMActivity8" />
+                <class name="OrangeHRM_Project.HRMActivity9" />
+            </classes>
+        </test>
+    </suite>
