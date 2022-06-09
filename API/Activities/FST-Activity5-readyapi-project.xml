@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="a736b8de-be9e-45c9-b091-9b706ae2d453" created="3.40.0" activeEnvironment="Default environment" name="FST_Activity5&amp;6" resourceRoot="" updated="3.40.0 2022-06-02T10:34:15Z" encryptionMode="Not encrypted" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings/>
+  <con:interface xsi:type="con:RestService" id="d6b28a7a-fe3e-45c0-8005-2f915b441225" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://ipwhois.app" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:settings/>
+    <con:definitionCache type="TEXT" rootPart=""/>
+    <con:endpoints>
+      <con:endpoint>http://ipwhois.app</con:endpoint>
+    </con:endpoints>
+    <con:resource name="IP" path="/json/{IP}" id="0ae14b32-08ac-40a8-8958-ae52fea33ce3">
+      <con:settings/>
+      <con:parameters/>
+      <con:method name="IP" id="63406dd8-f1d7-42ee-a4f7-1d2bae69092d" method="GET">
+        <con:settings/>
+        <con:parameters>
+          <con:parameter required="true">
+            <con:name>IP</con:name>
+            <con:value>IP</con:value>
+            <con:style>TEMPLATE</con:style>
+            <con:default>IP</con:default>
+            <con:path xsi:nil="true"/>
+            <con:description xsi:nil="true"/>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json; charset=utf-8</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element xmlns:ns="http://ipwhois.app/json/94.127.62.254">ns:Response</con:element>
+        </con:representation>
+        <con:request name="Request 1" id="754c210c-96cb-4048-a119-9d969d8389e2" mediaType="application/json">
+          <con:settings/>
+          <con:endpoint>http://ipwhois.app</con:endpoint>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:parameters>
+            <con:entry key="IP" value="IP"/>
+          </con:parameters>
+          <con:parameterOrder>
+            <con:entry>IP</con:entry>
+          </con:parameterOrder>
+        </con:request>
+      </con:method>
+    </con:resource>
+  </con:interface>
+  <con:testSuite id="74859053-866f-41b4-ae39-c45d54435c89" name="http://ipwhois.app Test Suite">
+    <con:settings/>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:testCase id="48c842e0-5395-45f4-a0b7-3f9a428e78d1" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Activity5" searchProperties="true" timeout="0">
+      <con:settings/>
+      <con:testStep type="datasource" name="Activity5_DataSource" id="85ad7bda-2201-4004-add4-810080effb0f">
+        <con:settings/>
+        <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:dataSource type="Excel">
+            <con:configuration>
+              <file>C:/Users/04009D744/IdeaProjects/FST-API/Activity5_DataSource.xlsx</file>
+              <worksheet/>
+              <cell>A2</cell>
+              <ignoreEmpty>false</ignoreEmpty>
+              <evaluateFormulas>false</evaluateFormulas>
+            </con:configuration>
+          </con:dataSource>
+          <con:shared>false</con:shared>
+          <con:restartShared>false</con:restartShared>
+          <con:property>IP Address</con:property>
+          <con:restartOnRun>true</con:restartOnRun>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Request 1" id="a445ecc8-e30b-4983-8b00-289fe718c8ea">
+        <con:settings/>
+        <con:config service="http://ipwhois.app" resourcePath="/json/{IP}" methodName="IP" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Request 1" id="754c210c-96cb-4048-a119-9d969d8389e2" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://ipwhois.app</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://ipwhois.app/json/94.127.62.254</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="e5871b69-f305-4d4c-be00-d976dbad755e" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="8a3477ad-67be-4498-b01e-b734b8b5bb1f" name="JSONPath Match">
+              <con:configuration>
+                <path>$['country']</path>
+                <content>"Norway"</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters>
+              <con:entry key="IP" value="${Activity5_DataSource#IP Address}"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>IP</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="datasourceloop" name="Data Source Loop" id="3d9be90c-0313-47b9-b4ec-71fedc8f3974">
+        <con:settings/>
+        <con:config>
+          <dataSourceStep>Activity5_DataSource</dataSourceStep>
+          <targetStep>Request 1</targetStep>
+          <discardResults>true</discardResults>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+      <con:reportParameters/>
+    </con:testCase>
+    <con:testCase id="2e65b0e2-5e1f-4948-807e-b9465593ed92" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Activity6" searchProperties="true" timeout="0">
+      <con:settings/>
+      <con:testStep type="datasource" name="Data Source" id="fed3eb65-4334-43ec-8bdc-16ced5a64643">
+        <con:settings/>
+        <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:dataSource type="Data Generator">
+            <con:configuration>
+              <generatedDataCount>10</generatedDataCount>
+              <generatorsTotalNumber>1</generatorsTotalNumber>
+              <lastSelectedProperty>-1</lastSelectedProperty>
+              <GeneratorType0>COMP</GeneratorType0>
+              <PropertyName0>IP</PropertyName0>
+              <repetitionCountIP>0</repetitionCountIP>
+              <repeatValuesIP>false</repeatValuesIP>
+              <ComputerAddressTypeIP>IPv4</ComputerAddressTypeIP>
+              <escapeSpaceSequence/>
+            </con:configuration>
+          </con:dataSource>
+          <con:shared>false</con:shared>
+          <con:restartShared>false</con:restartShared>
+          <con:property>IP</con:property>
+          <con:restartOnRun>true</con:restartOnRun>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Request 1" id="2371cf94-4239-41be-8d7b-c20d2b31fadc">
+        <con:settings/>
+        <con:config service="http://ipwhois.app" resourcePath="/json/{IP}" methodName="IP" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Request 1" id="754c210c-96cb-4048-a119-9d969d8389e2" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>http://ipwhois.app</con:endpoint>
+            <con:request/>
+            <con:originalUri>http://ipwhois.app/json/94.127.62.254</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="e5871b69-f305-4d4c-be00-d976dbad755e" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="JsonPath Match" id="8a3477ad-67be-4498-b01e-b734b8b5bb1f" name="JSONPath Match">
+              <con:configuration>
+                <path>$['country']</path>
+                <content>"Norway"</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters>
+              <con:entry key="IP" value="${Data Source#IP}"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>IP</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="datasink" name="Data Sink" id="482c5db5-daa9-41b6-8aca-d58755ca07b9">
+        <con:settings/>
+        <con:config xsi:type="con:DataSinkStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:dataSink type="JDBC">
+            <con:configuration>
+              <driver>com.mysql.jdbc.Driver</driver>
+              <connstr>jdbc:mysql://remotemysql.com:3306/CGpfjlbstY?user=CGpfjlbstY&amp;password=PASS_VALUE</connstr>
+              <pass>Sav3dVDTJ4</pass>
+              <Connection>&lt;None></Connection>
+              <query>insert into coordinates(cityName,latitude,longitude) values ("city1","23.4N","24.3S");</query>
+              <stored-procedure>false</stored-procedure>
+            </con:configuration>
+          </con:dataSink>
+          <con:properties>
+            <con:property>
+              <con:name>cityName</con:name>
+              <con:value>city1</con:value>
+            </con:property>
+            <con:property>
+              <con:name>latitude</con:name>
+              <con:value>23.4N</con:value>
+            </con:property>
+            <con:property>
+              <con:name>longitude</con:name>
+              <con:value>24.3S</con:value>
+            </con:property>
+          </con:properties>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="datasourceloop" name="Data Source Loop" id="f9a6b127-0a7b-456b-9e24-433ae669872f">
+        <con:settings/>
+        <con:config>
+          <dataSourceStep>Data Source</dataSourceStep>
+          <targetStep>Request 1</targetStep>
+          <discardResults>false</discardResults>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+      <con:reportParameters/>
+    </con:testCase>
+    <con:properties/>
+    <con:reportParameters/>
+  </con:testSuite>
+  <con:requirements/>
+  <con:properties/>
+  <con:wssContainer/>
+  <con:databaseConnectionContainer/>
+  <con:jmsConnectionContainer/>
+  <con:oAuth2ProfileContainer/>
+  <con:oAuth1ProfileContainer/>
+  <con:reporting>
+    <con:xmlTemplates/>
+    <con:parameters/>
+  </con:reporting>
+  <con:eventHandlers type="RequestFilter.filterRequest" name="RequestFilter.filterRequest">
+    <con:script>// Sample event script to add custom HTTP header to all outgoing REST, SOAP and HTTP(S) calls
+// This code is often used for adding custom authentication to ReadyAPI functional tests
+
+// If hardcoding the token, uncomment and change line 5
+// token = '4567'
+
+// If your token is parameterized in Project level custom property, uncomment line 8
+// token = request.parent.testCase.testSuite.project.getProperty('auth_token').getValue()
+
+// To modify all outgoing calls, remove comments from lines 11 to 16
+// headers = request.requestHeaders
+// if (headers.containsKey('auth_token2') == false) {
+//   headers.put('auth_token2', token)
+//   request.requestHeaders = headers
+// }</con:script>
+  </con:eventHandlers>
+  <con:eventHandlers type="TestRunListener.afterStep" name="TestRunListener.afterStep">
+    <con:script>// Save all test step results into files
+// Change the directory path in line 5 to a location where you want to store details
+// then uncomment lines 5 to 10
+
+// filePath = 'C:\\tempOutputDirectory\\'
+// fos = new java.io.FileOutputStream(filePath + testStepResult.testStep.label + '.txt', true)
+// pw = new java.io.PrintWriter(fos)
+// testStepResult.writeTo(pw)
+// pw.close()
+// fos.close()</con:script>
+  </con:eventHandlers>
+  <con:authRepository/>
+  <con:tags/>
+</con:soapui-project>
